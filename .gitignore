@@ -7,9 +7,6 @@
 # Test binary, generated with go test -c
 *.test
 
-# Output of the go generate command
-*.go
-
 # Environment variables
 .env
 
