@@ -9,7 +9,6 @@ import (
 )
 
 func Prompt(ctx context.Context, config *config.Config, prompt string) (string, error) {
-
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey: config.GeminiAPIKey,
 	})
