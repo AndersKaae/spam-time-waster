@@ -2,7 +2,6 @@ package gemini
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/anderskaae/spam-time-waster/internal/config"
 	"google.golang.org/genai"
@@ -22,7 +21,8 @@ func Prompt(ctx context.Context, config *config.Config, prompt string) (string, 
 	}
 
 	if len(result.Candidates) > 0 && len(result.Candidates[0].Content.Parts) > 0 {
-		return fmt.Sprintf("%v", result.Candidates[0].Content.Parts[0]), nil
+		part := result.Candidates[0].Content.Parts[0]
+		return part.Text, nil
 	}
 
 	return "No response", nil
