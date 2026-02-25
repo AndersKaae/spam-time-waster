@@ -17,14 +17,23 @@ type Config struct {
 // LoadConfig loads environment variables from a .env file into the Config struct.
 func LoadConfig() (*Config, error) {
 	if err := godotenv.Load(); err != nil {
-		log.Print("No .env file found, relying on system environment variables.")
+		log.Fatalf("No .env file found, relying on system environment variables.")
+
 	}
 
 	cfg := &Config{
-		GeminiAPIKey:         os.Getenv("GEMINI_API_KEY"),
-		GeminiModel:          os.Getenv("GEMINI_MODEL"),
-		GmailCredentialsFile: os.Getenv("GMAIL_CREDENTIALS_FILE"),
+		GeminiAPIKey:         mustGetenv("GEMINI_API_KEY"),
+		GeminiModel:          mustGetenv("GEMINI_MODEL"),
+		GmailCredentialsFile: mustGetenv("GMAIL_CREDENTIALS_FILE"),
 	}
 
 	return cfg, nil
+}
+
+func mustGetenv(key string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		log.Fatalf("missing required env var: %s", key)
+	}
+	return val
 }
