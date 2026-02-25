@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/anderskaae/spam-time-waster/config"
+	"github.com/anderskaae/spam-time-waster/internal/config"
 	"google.golang.org/genai"
 )
 

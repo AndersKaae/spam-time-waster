@@ -9,6 +9,7 @@
 
 # Environment variables
 .env
+token.json
 
 # Editor-specific files
 .idea/
